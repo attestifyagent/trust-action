@@ -1,0 +1,28 @@
+{
+  "name": "trust-action",
+  "version": "1.0.0",
+  "description": "GitHub Action: register once, sign evidence per CI run, post the receipt as a PR check.",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "ncc build src/index.ts -o dist --minify",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@actions/core": "^1.10.1",
+    "@actions/github": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@vercel/ncc": "^0.38.1",
+    "typescript": "^5.4.0",
+    "vitest": "^2.1.9"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/attestifyagent/trust-action"
+  },
+  "homepage": "https://attestifyos.com/trust"
+}

@@ -1,0 +1,41 @@
+name: 'Attestify Trust'
+description: 'Sign evidence that this CI run happened, and post the receipt as a PR check — free, no wallet, no card.'
+author: 'Attestify'
+branding:
+  icon: 'shield'
+  color: 'blue'
+
+inputs:
+  api-key:
+    description: 'Your Trust tenant API key (secrets.TRUST_API_KEY) — see https://attestifyos.com/plans'
+    required: true
+  agent-id:
+    description: 'The registered agent ID (secrets.TRUST_AGENT_ID) — generated once by `attestify trust-init`, never by this Action.'
+    required: true
+  private-key:
+    description: "The agent's Ed25519 private key, JWK 'd' field (secrets.TRUST_PRIVATE_KEY) — generated once by `attestify trust-init`, never by this Action."
+    required: true
+  base-url:
+    description: 'Attestify OS base URL — override only for staging/self-hosted.'
+    required: false
+    default: 'https://attestifyos.com'
+  github-token:
+    description: 'Token used to post the PR check. Needs `checks: write` on the calling workflow.'
+    required: false
+    default: ${{ github.token }}
+  post-check:
+    description: "Whether to post a GitHub Check on the triggering commit. Set to 'false' to only submit evidence."
+    required: false
+    default: 'true'
+
+outputs:
+  receipt-id:
+    description: 'The issued receipt ID (rcpt_...).'
+  receipt-url:
+    description: 'A public, no-auth link to independently verify the receipt.'
+  assurance-level:
+    description: "The receipt's assurance level (e.g. L3)."
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
