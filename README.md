@@ -20,13 +20,6 @@ Key generation and agent registration happen **locally**, once — never inside 
 default token can't write repo secrets, and even masked log output isn't a safe place to hold a
 private key.
 
-> **Known gap, not yet fixed:** the `attestify` CLI isn't published to npm yet, so `trust-init`
-> isn't runnable via `npx` today — tracked in attestify-os. Until that's live, the only way to
-> run it is from inside a checkout of attestify-os itself (currently a private repo), which
-> means this setup step is not yet usable by anyone outside Attestify. Real limitation, not a
-> documentation gap — this note will be replaced with a working command once it's published.
-
-Once published, the intended flow is:
 ```bash
 npx attestify trust-init --name "My CI Bot" --repo your-org/your-repo
 ```
